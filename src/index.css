@@ -30,7 +30,7 @@ code {
 }
 .ChucksIMG {
    width: 40%;
-   height: 200px;
+   height: 250px;
 }
 
 .Card {
@@ -80,19 +80,23 @@ code {
    border: 1px solid black;
    margin-bottom: 8px;
    padding: 5px;
+   cursor: pointer;
+  }
+  
+  .CatTitle1 {
+    width: 120px;
+    height: 20px;
+    border: 1px solid black;
+    margin-bottom: 8px;
+    padding: 5px;
+    background-color: green;
+    cursor: pointer;
 
 }
 
-.CatTitle1 {
-  width: 120px;
-  height: 20px;
-  border: 1px solid black;
-  margin-bottom: 8px;
-  padding: 5px;
-  background-color: green;
-
+.CatTitle:hover {
+  background-color: lightgray;
 }
-
 .JokeTXT {
   margin: 0 15px;
 }

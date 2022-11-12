@@ -1,4 +1,4 @@
-import { useState, useEffect} from 'react';
+import { useState, useEffect, useRef} from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import './App.css';
 import './index.css';
@@ -14,7 +14,16 @@ function ChuckIsReady() {
     const [JokeCounter, setJokeCounter] = useState(1)
     const [realTimeJoke, setRealTimeJoke] = useState(null)
     const [rand, setRand] = useState(false)
+    const buttonRef = useRef()
   
+
+    const disableButton = () =>{
+        buttonRef.current.disabled = true;
+       }
+
+       const enableButton = () =>{
+        buttonRef.current.disabled = false;
+       }
 
 
   
@@ -29,6 +38,11 @@ function ChuckIsReady() {
 
       useEffect(() => {
         setRealTimeJoke(CATJOKES.at(-JokeCounter))
+        if(choosen == null) {
+            disableButton()
+        } else {
+            enableButton()
+        }
         //აქედან ვსეტავ ახლანდელ დროში რეალურად წამოღებულ ბოლო ხუმრობას ყოველი კატეგორიის არჩევაზე
         //გამოყენებულია ერეის -1 პრინციპი რითიც ერეიში მყოფი ინდექსით ბოლოს ჩამატებულ დატას ვიღებთ
       }, [choosen])
@@ -88,7 +102,7 @@ function ChuckIsReady() {
                 dispatch(setJokes(json
                 ))
                 if(choosen == idx) {
-                    setChoosen(null)
+                    setChoosen(null)  
                 }
             }
               )
@@ -133,11 +147,11 @@ function ChuckIsReady() {
       </div>
       <div className='bodY'>
        <div className='Btns'>
-         <button onClick={() => {    
-                setJokeCounter(JokeCounter + 1)   
+         <button ref={buttonRef} onClick={() => {    
+                setJokeCounter(JokeCounter + 1)  
                 //Prev შემთხვევაში +1 გასაკვირია მაგრამ ერეის -1 პრინციპის მიხედვით ასე ვალაგებ ინდექსებს
          }
-            } className='BTN'>Prev</button>
+            }  className='BTN'>Prev</button>
          <button onClick={() => {
                 if (choosen == null) {
                     setRand(true)
